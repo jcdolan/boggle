@@ -94,6 +94,7 @@ def play_boggle():
     num_dice = 16
     perm = generate_permutation()
     permuted_letters = [letters[p] for p in perm]
+    print(permuted_letters)
     # Print board
     print_board(permuted_letters)
     
