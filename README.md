@@ -1,1 +1,2 @@
-Boggle Prototype by Jack Dolan and Derrick Lui
+# Boggle
+by **Jack Dolan** and **Derrick Lui**
