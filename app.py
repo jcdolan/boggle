@@ -1,8 +1,33 @@
+from flask import Flask, jsonify, request
 import sys
 import time
 import numpy as np
 import random
 import os
+
+
+# initialize our Flask application
+app= Flask(__name__)
+
+@app.route("/codenames", methods=["GET"])
+def generate_codenames():
+    context = {}
+    context["board"] = play_codenames()
+    response = jsonify(**context)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
+
+@app.route("/boggle", methods=["GET"])
+def generate_boggle():
+    context = {}
+    context["board"] = play_boggle()
+    response = jsonify(**context)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
+
+# ------------------------------------------------------------------------------------------------ #
+# ------------------------------------------BOGGLE------------------------------------------------ #
+# ------------------------------------------------------------------------------------------------ #
 
 
 DICE = [
@@ -66,7 +91,6 @@ def print_board(permuted_letters):
             print("")
         col += 1
 
-
 def start_timer():
     t = 180
     intervals = set([180, 150, 120, 90, 60, 30, 15,
@@ -105,15 +129,17 @@ def play_boggle():
             row = []
             counter = 0
         counter += 1
-    print(formatted_board)
+    return formatted_board
 
 
-# if __name__ == "__main__":
-#     command = get_command()
-#     while command == "yes" or command == "y":
-#         clear()
-#         play_boggle()
-#         command = get_command()
-#     print("goodbye!")
-#     clear()
 
+# ------------------------------------------------------------------------------------------------ #
+# --------------------------------------------CODENAMES------------------------------------------- #
+# ------------------------------------------------------------------------------------------------ #
+
+def play_codenames():
+    print("hello")
+
+#  main thread of execution to start the server
+if __name__=='__main__':
+    app.run(debug=True)
